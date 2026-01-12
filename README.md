@@ -92,5 +92,27 @@ Voice Insights AI follows a production-grade, cloud-native architecture:
 7. UI highlights exact timestamps for verification  
 
 ---
+Here is an overview of the architecture for the solution.
+The frontend uploads audio, backend stores it in S3 and pushes a job to SQS. A worker Lambda processes it asynchronously using Transcribe and Bedrock, stores results, and exposes job status via API.
+
+flowchart LR
+    User --> UI[Web UI<br/>CloudFront + S3]
+    UI --> Auth[Cognito]
+    UI --> API[API Gateway]
+
+    API --> Upload[Lambda<br/>Upload API]
+    Upload --> MediaS3[S3<br/>Audio Files]
+    Upload --> Queue[SQS<br/>Processing Queue]
+    Upload --> DB[DynamoDB<br/>Job Metadata]
+
+    Queue --> Worker[Lambda<br/>AI Worker]
+    Worker --> Transcribe[Amazon Transcribe]
+    Worker --> Bedrock[Amazon Bedrock<br/>LLM]
+    Worker --> OutputS3[S3<br/>Transcripts]
+    Worker --> Search[OpenSearch]
+
+    API --> Status[Lambda<br/>Job Status]
+    Status --> DB
+
 
 
