@@ -71,6 +71,16 @@ Voice Insights AI follows a production-grade, cloud-native architecture:
 
 ---
 
+## 📂 Repository Structure
+
+```text
+.
+├── docs/        # API documentation, usage guides, and design notes
+├── frontend/    # React frontend application
+├── infra/       # Backend logic and infrastructure (AWS CDK + Lambda)
+├── tests/       # Automated tests for backend and integrations
+└──README.md
+
 ## 🧩 How It Works
 
 1. User uploads an audio or video file  
@@ -83,14 +93,4 @@ Voice Insights AI follows a production-grade, cloud-native architecture:
 
 ---
 
-## 📂 Repository Structure
 
-```text
-.
-├── infra/        # Infrastructure & backend (AWS CDK, Lambdas)
-├── frontend/     # React frontend application
-├── docs/         # API documentation and usage guides
-├── diagram/      # Architecture and system diagrams
-├── tests/        # Automated tests
-├── README.md
-└── LICENSE
